@@ -1,39 +1,206 @@
-@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Sen', sans-serif;
 }
 
-.list-of-pokemon {
+body {
+  height: 100vh;
+
+  background: #efefbb;
+  background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
+  background: linear-gradient(to right, #d4d3dd, #efefbb);
+}
+
+.App {
+  background: #efefbb;
+  background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
+  background: linear-gradient(to right, #d4d3dd, #efefbb);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato";
+  margin: 0;
+}
+
+.poke-container {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-.poke {
-	background-color: #eee;
-	border-radius: 20px;
-	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-	margin: 10px;
-	padding: 20px;
+.pokemon {
+  background-color: #eee;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  margin: 10px;
+  padding: 20px;
   text-align: center;
-  transition: all 0.5s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
-.poke:hover {
+.pokemon:hover {
+  transform: scale(1.03);
+  box-shadow: 0 3px 18px rgba(24, 24, 24, 0.7);
+  cursor: pointer;
+}
+
+.pokemon .img-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  text-align: center;
+}
+
+.pokemon .img-container img {
+  margin-top: 20px;
+  max-width: 90%;
+}
+
+.pokemon .info {
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.pokemon .number {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-size: 0.8em;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.pokemon .name {
+  margin: 15px 0 7px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.btn-con {
+  width: 80%;
+  margin: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 18px;
+  font-family: Lato, sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 200ms ease-in;
+  box-shadow: 3px 5px #888888;
+}
+
+.btn:hover {
   transform: scale(1.1);
 }
 
-.image-holder {
-	background-color: rgba(255, 255, 255, 0.6);
-	border-radius: 50%;
-	width: 120px;
-	height: 120px;
-	text-align: center;
+.page-data {
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 900px;
 }
 
-.poke .image-holder img{
-  margin-top: 20px;
-	max-width: 90%;
+.page-data .image-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 40%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 20px;
+}
+
+.page-data .image-container img {
+  margin: 20px;
+  max-width: 90%;
+}
+
+.page-data .style-holder {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.meter {
+  height: 8px;
+  position: relative;
+  background: #555;
+  border-radius: 25px;
+  padding: 2px;
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.pokepage-btn-holder {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	max-width: 900px;
+}
+
+@media only screen and (max-width: 600px) {
+  .page-data {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px;
+  }
+
+  .page-data .image-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 90%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .page-data .image-container img {
+    margin: 10px;
+    max-width: 90%;
+  }
+
+  .page-data .name-info {
+    width: 100%;
+    display: flex;
+  }
+
+  .page-data .name-info h2 {
+    text-align: center;
+  }
 }
