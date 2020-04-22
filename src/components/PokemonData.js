@@ -94,8 +94,6 @@ const pokeContainerStyle = {
   flexWrap: "wrap",
   alignItems: "space-between",
   justifyContent: "center",
-  margin: "0 auto",
-  maxWidth: "1200px",
 };
 
 export default PokemonData;

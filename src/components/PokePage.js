@@ -15,7 +15,7 @@ const colors = {
   flying: "#F5F5F5",
   fighting: "#E6E0D4",
   normal: "#F5F5F5",
-  ghost: "#d580ff"
+  ghost: "#d580ff",
 };
 
 const main_types = Object.keys(colors);
@@ -33,7 +33,7 @@ class PokePage extends Component {
       defense: "",
       speed: "",
       specialAttack: "",
-      specialDefense: ""
+      specialDefense: "",
     },
     heigth: "",
     weight: "",
@@ -43,7 +43,7 @@ class PokePage extends Component {
     genderRatioFemale: "",
     evs: "",
     hatchSteps: "",
-    color: ""
+    color: "",
   };
 
   async componentDidMount() {
@@ -58,13 +58,13 @@ class PokePage extends Component {
     const name = data.name
       .toLowerCase()
       .split("-")
-      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
       .join(" ");
     const imgUrl = `https://pokeres.bastionbot.org/images/pokemon/${index}.png`;
 
     let { hp, attack, defense, speed, specialAttack, specialDefense } = "";
     //map stats
-    data.stats.map(stat => {
+    data.stats.map((stat) => {
       switch (stat.stat.name) {
         case "hp":
           hp = stat["base_stat"];
@@ -90,32 +90,32 @@ class PokePage extends Component {
     });
     const height = Math.round((data.height * 0.328084 + 0.0001) * 100) / 100;
     const weight = (data.weight * 100) / 1000;
-    const typesList = data.types.map(type => type.type.name);
+    const typesList = data.types.map((type) => type.type.name);
     const types = data.types
-      .map(type =>
+      .map((type) =>
         type.type.name
           .toLowerCase()
           .split("-")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" ")
       )
       .join(", ");
     const abilities = data.abilities
-      .map(ability => {
+      .map((ability) => {
         return ability.ability.name
           .toLowerCase()
           .split("-")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" ");
       })
       .join(", ");
     const evs = data.stats
-      .filter(stat => (stat.effort > 0 ? true : false))
-      .map(stat => {
+      .filter((stat) => (stat.effort > 0 ? true : false))
+      .map((stat) => {
         return `${stat.effort} ${stat.stat.name}`
           .toLowerCase()
           .split("-")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+          .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" ");
       })
       .join(", ");
@@ -123,10 +123,10 @@ class PokePage extends Component {
     // getting pokemon description, catchRate, egggroups, genderratio
 
     await fetch(speciesUrl)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         let description = "";
-        data.flavor_text_entries.some(flavor => {
+        data.flavor_text_entries.some((flavor) => {
           if (flavor.language.name === "en") {
             description = flavor.flavor_text;
           }
@@ -138,11 +138,11 @@ class PokePage extends Component {
         const catchRate = Math.round((100 / 255) * data["capture_rate"]);
 
         const eggGroups = data["egg_groups"]
-          .map(group => {
+          .map((group) => {
             return group.name
               .toLowerCase()
               .split("-")
-              .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+              .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
               .join(" ");
           })
           .join(", ");
@@ -155,11 +155,11 @@ class PokePage extends Component {
           genderRatioMale,
           catchRate,
           eggGroups,
-          hatchSteps
+          hatchSteps,
         });
       });
 
-    const type = main_types.find(t => typesList.indexOf(t) > -1);
+    const type = main_types.find((t) => typesList.indexOf(t) > -1);
     const color = colors[type];
 
     this.setState({
@@ -172,7 +172,7 @@ class PokePage extends Component {
       weight,
       abilities,
       evs,
-      color
+      color,
     });
   }
 
@@ -188,15 +188,21 @@ class PokePage extends Component {
       evs,
       color,
       stats,
-      description
+      description,
     } = this.state;
-    
+
     return (
       <>
         <div className="pokepage-btn-holder">
-            <button className="btn pokepage-btn" onClick={() => this.props.history.goBack()}>Back</button>
+          <button
+            className="pokepage-btn"
+            onClick={() => this.props.history.goBack()}
+            style={btnStyle}
+          >
+            Back
+          </button>
         </div>
-        
+
         <div style={{ backgroundColor: `${color}` }} className="page-data">
           <div className="image-container">
             <img src={imgUrl} alt={name} />
@@ -264,5 +270,16 @@ class PokePage extends Component {
     );
   }
 }
+
+const btnStyle = {
+  width: "70px",
+  height: "30px",
+  margin: "10px",
+  border: "none",
+  borderRadius: "5px",
+  transition: "transform 200ms ease-in-out",
+  fontSize: "20px",
+  letterSpacing: "1.2px",
+};
 
 export default PokePage;

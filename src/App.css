@@ -2,32 +2,23 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 
 body {
-  margin: 0;
   padding: 0;
-}
-
-body {
   height: 100vh;
-
   background: #efefbb;
   background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
   background: linear-gradient(to right, #d4d3dd, #efefbb);
-}
-
-.App {
-  background: #efefbb;
-  background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
-  background: linear-gradient(to right, #d4d3dd, #efefbb);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-family: "Lato";
-  margin: 0;
+}
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
+/* pokemon card styling */
 .pokemon {
+  width: 180px;
+  height: auto;
   background-color: #eee;
   border-radius: 20px;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
@@ -46,9 +37,6 @@ body {
 .pokemon .img-container {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  width: 180px;
-  height: 180px;
-  text-align: center;
 }
 
 .pokemon .img-container img {
@@ -76,25 +64,35 @@ body {
 }
 
 .btn-con {
-  width: 80%;
-  margin: 30px;
+  width: 100%;
+  height: 100px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .btn {
-  padding: 10px;
-  font-size: 18px;
-  font-family: Lato, sans-serif;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 200ms ease-in;
-  box-shadow: 3px 5px #888888;
+  width: calc(50% - 50px);
+  height: 60px;
+  margin: 20%;
+  border-radius: 10px;
+  transition: 300ms ease-in-out;
+  font-size: 25px;
 }
 
 .btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  cursor: pointer;
+}
+
+.pokepage-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  cursor: pointer;
 }
 
 .page-data {
