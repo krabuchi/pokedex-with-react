@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
 /* importing Components */
 import Pokemon from "./Pokemon";
@@ -7,9 +8,8 @@ import Button from "./Button";
 import PokePage from "./PokePage";
 
 //fetch pokemon list
-const getPokemon = async url => {
-  const u = url;
-  const response = await fetch(u);
+const getPokemon = async (url) => {
+  const response = await fetch(url);
   const data = response.json();
   return data;
 };
@@ -23,9 +23,9 @@ class PokemonData extends Component {
     this.state = {
       isLoading: true,
       pokeData: [],
-      url: `https://pokeapi.co/api/v2/pokemon/`,
+      url: `https://pokeapi.co/api/v2/pokemon`,
       nextUrl: "",
-      prevUrl: ""
+      prevUrl: "",
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -38,7 +38,7 @@ class PokemonData extends Component {
         isLoading: false,
         pokeData: data["results"],
         nextUrl: data["next"],
-        prevUrl: data["previous"]
+        prevUrl: data["previous"],
       });
     }
   }
@@ -59,23 +59,24 @@ class PokemonData extends Component {
       this.setState({
         pokeData: data["results"],
         nextUrl: data["next"],
-        prevUrl: data["previous"]
+        prevUrl: data["previous"],
       });
     }
   }
 
   render() {
-    const list = this.state.pokeData.map(poke => (
-      <Pokemon key={poke.name} name={poke.name} url={poke.url} />
-    ));
-
     return (
       <React.Fragment>
         {this.state.isLoading ? (
           <h1>Loading...</h1>
         ) : (
           <>
-            <ul className="poke-container">{list}</ul>
+            <div className="poke-container" style={pokeContainerStyle}>
+              {this.state.pokeData &&
+                this.state.pokeData.map((poke) => (
+                  <Pokemon key={poke.name} name={poke.name} url={poke.url} />
+                ))}
+            </div>
             <Button
               prevUrl={this.state.prevUrl}
               handleClick={this.handleClick}
@@ -86,5 +87,15 @@ class PokemonData extends Component {
     );
   }
 }
+
+const pokeContainerStyle = {
+  listStyle: "none",
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "space-between",
+  justifyContent: "center",
+  margin: "0 auto",
+  maxWidth: "1200px",
+};
 
 export default PokemonData;

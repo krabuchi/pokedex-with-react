@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import LazyLoad from 'react-lazyload';
 
 const colors = {
   fire: "#FDDFDF",
@@ -48,9 +49,11 @@ class Pokemon extends Component {
     const { name, imgUrl, index, type, color } = this.state;
     return (
       <Link to={`/pokemon/${index}`} style={style}>
-        <li className="pokemon" style={{ backgroundColor: `${color}` }}>
+        <div className="pokemon" style={{ backgroundColor: `${color}` }}>
           <div className="img-container">
-            <img src={imgUrl} alt={name} />
+            <LazyLoad once={true}>
+              <img src={imgUrl} alt={name} />
+            </LazyLoad>
           </div>
           <div className="info">
             <span className="number">{index.toString().padStart(3, "0")}</span>
@@ -65,7 +68,7 @@ class Pokemon extends Component {
               Type: <span>{type}</span>
             </small>
           </div>
-        </li>
+        </div>
       </Link>
     );
   }

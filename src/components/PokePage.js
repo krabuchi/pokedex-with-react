@@ -190,6 +190,7 @@ class PokePage extends Component {
       stats,
       description
     } = this.state;
+    
     return (
       <>
         <div className="pokepage-btn-holder">
