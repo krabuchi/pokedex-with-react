@@ -236,31 +236,31 @@ class PokePage extends Component {
               <div className="stat-row">
                 <span>Attack</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.attack}%` }} />
+                  <span style={{ width: `${stats.attack / 2}%` }} />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Defense</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.defense}%` }} />
+                  <span style={{ width: `${stats.defense / 2}%` }} />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Speed</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.speed}%` }} />
+                  <span style={{ width: `${stats.speed / 2}%` }} />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Sp Attack</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.specialAttack}%` }} />
+                  <span style={{ width: `${stats.specialAttack / 2}%` }} />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Sp Defense</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.specialDefense}%` }} />
+                  <span style={{ width: `${stats.specialDefense / 2}%` }} />
                 </div>
               </div>
             </div>
