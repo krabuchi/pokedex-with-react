@@ -50,6 +50,7 @@ class PokemonData extends Component {
     } else {
       this.setState({ url: this.state.nextUrl });
     }
+    window.scroll(0, 0);
   }
 
   async componentDidUpdate(prevState) {
