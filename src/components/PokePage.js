@@ -192,7 +192,7 @@ class PokePage extends Component {
     } = this.state;
 
     return (
-      <>
+      <div className="poke-page">
         <div className="pokepage-btn-holder">
           <button
             className="pokepage-btn"
@@ -266,7 +266,7 @@ class PokePage extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
