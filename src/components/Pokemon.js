@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import LazyLoad from 'react-lazyload';
+import LazyLoad from "react-lazyload";
 
 const colors = {
   fire: "#FDDFDF",
@@ -16,7 +16,7 @@ const colors = {
   psychic: "#eaeda1",
   flying: "#F5F5F5",
   fighting: "#E6E0D4",
-  normal: "#F5F5F5"
+  normal: "#F5F5F5",
 };
 
 const main_types = Object.keys(colors);
@@ -27,7 +27,7 @@ class Pokemon extends Component {
     imgUrl: "",
     index: "",
     type: "",
-    color: ""
+    color: "",
   };
 
   async componentDidMount() {
@@ -38,8 +38,8 @@ class Pokemon extends Component {
     /*getting pokemon data */
     const res = await fetch(url);
     const data = await res.json();
-    const pokeType = data.types.map(t => t.type.name);
-    const type = main_types.find(t => pokeType.indexOf(t) > -1);
+    const pokeType = data.types.map((t) => t.type.name);
+    const type = main_types.find((t) => pokeType.indexOf(t) > -1);
     const color = colors[type];
 
     this.setState({ name, imgUrl, index, type, color });
@@ -61,7 +61,7 @@ class Pokemon extends Component {
               {name
                 .toLowerCase()
                 .split("-")
-                .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
                 .join(" ")}
             </h3>
             <small className="type">
@@ -76,7 +76,7 @@ class Pokemon extends Component {
 
 const style = {
   textDecoration: "none",
-  color: "black"
+  color: "black",
 };
 
 export default Pokemon;

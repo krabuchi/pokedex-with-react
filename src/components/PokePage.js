@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./pokepage.module.css";
 
 const colors = {
   fire: "#FDDFDF",
@@ -192,7 +193,7 @@ class PokePage extends Component {
     } = this.state;
 
     return (
-      <div className="poke-page">
+      <div className={styles.pokepage}>
         <div className="pokepage-btn-holder">
           <button
             className="pokepage-btn"
@@ -203,64 +204,103 @@ class PokePage extends Component {
           </button>
         </div>
 
-        <div style={{ backgroundColor: `${color}` }} className="page-data">
-          <div className="image-container">
-            <img src={imgUrl} alt={name} />
-          </div>
+        <div>
+          <header style={{ backgroundColor: `${color}` }}>
+            <h2> {name} </h2>
+            <span>#{index.toString().padStart(3, "0")}</span>
+          </header>
           <div>
-            <div className="name-info">
-              <p>#{index.toString().padStart(3, "0")}</p>
-              <h2> {name} </h2>
+            <div className={styles.details}>
+              <div className={styles["image-container"]}>
+                <img src={imgUrl} alt={name} />
+              </div>
+              <div className={styles.info}>
+                <p>Height: {height} ft.</p>
+                <p>Weight: {weight} kg</p>
+                <p>
+                  Types: <span>{types}</span>
+                </p>
+                <p>
+                  <span>Abilities</span>: {abilities}
+                </p>
+                <p>{description}</p>
+                <p>{evs}</p>
+              </div>
             </div>
 
-            <h3>Height: {height} ft.</h3>
-            <h3>Weight: {weight} kg</h3>
-            <h3 className="type">
-              Types:{" "}
-              <span style={{ backgroundColor: `${color}` }}>{types}</span>
-            </h3>
-            <p>
-              <span className="style-holder">Description</span>: {description}
-            </p>
-            <h4>
-              <span className="style-holder">Abilities</span>: {abilities}
-            </h4>
-            <p>{evs}</p>
             <div className="detail-stat">
               <div className="stat-row">
                 <span>HP</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.hp}%` }} />
+                  <span
+                    style={{
+                      width: `${stats.hp > 100 ? stats.hp / 2 : stats.hp}%`,
+                    }}
+                  />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Attack</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.attack / 2}%` }} />
+                  <span
+                    style={{
+                      width: `${
+                        stats.attack > 100 ? stats.attack / 2 : stats.attack
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Defense</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.defense / 2}%` }} />
+                  <span
+                    style={{
+                      width: `${
+                        stats.defense > 100 ? stats.defense / 2 : stats.defense
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Speed</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.speed / 2}%` }} />
+                  <span
+                    style={{
+                      width: `${
+                        stats.speed > 100 ? stats.speed / 2 : stats.speed
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Sp Attack</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.specialAttack / 2}%` }} />
+                  <span
+                    style={{
+                      width: `${
+                        stats.specialAttack > 100
+                          ? stats.specialAttack / 2
+                          : stats.specialAttack
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
               <div className="stat-row">
                 <span>Sp Defense</span>
                 <div className="meter">
-                  <span style={{ width: `${stats.specialDefense / 2}%` }} />
+                  <span
+                    style={{
+                      width: `${
+                        stats.specialDefense > 100
+                          ? stats.specialDefense / 2
+                          : stats.specialDefense
+                      }%`,
+                    }}
+                  />
                 </div>
               </div>
             </div>
