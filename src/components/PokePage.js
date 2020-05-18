@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styles from "./pokepage.module.css";
 
+import Statbar from "./statbar";
+
 const colors = {
   fire: "#FDDFDF",
   grass: "#DEFDE0",
@@ -215,96 +217,18 @@ class PokePage extends Component {
                 <img src={imgUrl} alt={name} />
               </div>
               <div className={styles.info}>
-                <p>Height: {height} ft.</p>
-                <p>Weight: {weight} kg</p>
-                <p>
+                <span>Height: {height} ft.</span>
+                <span>Weight: {weight} kg</span>
+                <span>
                   Types: <span>{types}</span>
-                </p>
-                <p>
-                  <span>Abilities</span>: {abilities}
-                </p>
-                <p>{description}</p>
-                <p>{evs}</p>
-              </div>
-            </div>
-
-            <div className="detail-stat">
-              <div className="stat-row">
-                <span>HP</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${stats.hp > 100 ? stats.hp / 2 : stats.hp}%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="stat-row">
-                <span>Attack</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${
-                        stats.attack > 100 ? stats.attack / 2 : stats.attack
-                      }%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="stat-row">
-                <span>Defense</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${
-                        stats.defense > 100 ? stats.defense / 2 : stats.defense
-                      }%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="stat-row">
-                <span>Speed</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${
-                        stats.speed > 100 ? stats.speed / 2 : stats.speed
-                      }%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="stat-row">
-                <span>Sp Attack</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${
-                        stats.specialAttack > 100
-                          ? stats.specialAttack / 2
-                          : stats.specialAttack
-                      }%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="stat-row">
-                <span>Sp Defense</span>
-                <div className="meter">
-                  <span
-                    style={{
-                      width: `${
-                        stats.specialDefense > 100
-                          ? stats.specialDefense / 2
-                          : stats.specialDefense
-                      }%`,
-                    }}
-                  />
-                </div>
+                </span>
+                <span>Abilities: {abilities}</span>
+                <span>{description}</span>
+                <span>{evs}</span>
               </div>
             </div>
           </div>
+          <Statbar stats={stats} />
         </div>
       </div>
     );
